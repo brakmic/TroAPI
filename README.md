@@ -19,7 +19,7 @@ exceptions written in pure JavaScript. Currently, none of the available JavaScri
 use as this project strives to fulfill the above mentioned goals without using more than the 
 `standard libs` like *lodash*, *rxjs*, *babel*, *jQuery* (for UI demos only!) etc. Of course, it 
 wouldn't be a problem to use a framework like AngularJS or React but in this stage of development 
-any additional weight should be rather avoided. 
+any additional weight should rather be avoided. 
 
 ##### Transforming HTML Pages into JSON Documents
 
