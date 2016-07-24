@@ -105,4 +105,4 @@ To run in *remote mode* one must start two separate NodeJS processes:
 
  #### License 
 
- MIT
+ [MIT](https://github.com/brakmic/TroAPI/blob/master/LICENSE)
