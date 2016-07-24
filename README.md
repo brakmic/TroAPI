@@ -49,7 +49,7 @@ index for direct consumption. Moreover, one can [extend the index on-the-fly](ht
 Having a lot of valuable information is only a single brick in a much greater structure. The information 
 must be free of any kind lock-in like format, vendor (iPhone, Android), form-factor (screen-size, resolution etc.).
 This is the reason this project uses only those languages and technologies that do not impose any kind of 
-restrictions on the developer and/or future user of these services. 
+restrictions on developers and/or future users of the platform. 
 
 This projects relies heavily on following OpenSource projects, technologies & formats: 
 
