@@ -34,7 +34,7 @@ more flexible format. Like JSON, for example.
 
 As far as I know Troisdorf's citizen services delivers its services via HTML documents and there 
 isn't any kind of API (XML or JSON) available. Of course, it would be of much help if an ordinary citizen could
-simply type in a few terms he understands and let the machine do the searching & filtering business.
+simply type in a few terms he/she understands and let the machine do the searching & filtering business.
 Searching for information via HTML is only acceptable if you can find it within a few clicks. But 
 searching for things often written in *Legal German* without having any kind of directly 
 accessible index (a search engine) can quickly become very tedious and time-consuming. This is the reason
