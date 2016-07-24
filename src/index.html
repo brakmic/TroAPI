@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <title><%= webpackConfig.metadata.title %></title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="<%= webpackConfig.metadata.title %>">
+  <meta name="msapplication-tap-highlight" content="no" />
+
+  <% if (webpackConfig.htmlElements.headTags) { %>
+  <!-- Configured Head Tags  -->
+  <%= webpackConfig.htmlElements.headTags %>
+  <% } %>
+
+  <!-- base url -->
+  <base href="<%= webpackConfig.metadata.baseUrl %>">
+
+</head>
+
+<body>
+ <div id="app" class="troisdorf-test-app">
+   <div class="container container-fluid">
+     <div class="col col-lg-8">
+       <div class="row">
+        <ul id="page-list-root" class="list-group list-group-root well">
+        </ul>
+       </div>
+       <div class="row">
+        <div id="search-tools"></div>
+        <div id="search-results"></div>
+       </div>
+     </div>
+   </div>
+ </div>
+  <% if (webpackConfig.metadata.isDevServer) { %>
+  <!-- Webpack Dev Server reload -->
+  <script src="/webpack-dev-server.js"></script>
+  <% } %>
+
+</body>
+</html>

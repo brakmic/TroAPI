@@ -1,0 +1,69 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "removeComments": false,
+    "noImplicitAny": true,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "exclude": [
+    "node_modules",
+    "bower_components"
+  ],
+  "filesGlob": [
+    "./src/**/*.ts",
+    "!./src/**/*.spec.ts",
+    "!./node_modules/**",
+    "./typings/**/*.ts"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false,
+  "atom": {
+    "rewriteTsconfig": true
+  },
+  "files": [
+    "./src/app/index.ts",
+    "./src/app/loader.ts",
+    "./src/app/main.ts",
+    "./src/custom-typings.d.ts",
+    "./src/interfaces/declarations/Contact.ts",
+    "./src/interfaces/declarations/FieldEntry.ts",
+    "./src/interfaces/declarations/HtmlElement.ts",
+    "./src/interfaces/declarations/HtmlLink.ts",
+    "./src/interfaces/declarations/IndexingReport.ts",
+    "./src/interfaces/declarations/Page.ts",
+    "./src/interfaces/declarations/SearchQuery.ts",
+    "./src/interfaces/declarations/SearchResult.ts",
+    "./src/interfaces/index.ts",
+    "./src/main.browser.ts",
+    "./src/polyfills.ts",
+    "./src/services/index.ts",
+    "./src/services/scanner/index.ts",
+    "./src/services/scanner/scanner.service.ts",
+    "./src/services/search/index.ts",
+    "./src/services/search/search.service.ts",
+    "./src/vendor.ts",
+    "./typings/globals/bootstrap/index.d.ts",
+    "./typings/globals/core-js/index.d.ts",
+    "./typings/globals/crypto-js/index.d.ts",
+    "./typings/globals/hammerjs/index.d.ts",
+    "./typings/globals/jquery/index.d.ts",
+    "./typings/globals/lodash/index.d.ts",
+    "./typings/globals/node/index.d.ts",
+    "./typings/globals/source-map/index.d.ts",
+    "./typings/globals/three/index.d.ts",
+    "./typings/globals/uglify-js/index.d.ts",
+    "./typings/globals/webpack/index.d.ts",
+    "./typings/globals/whatwg-fetch/index.d.ts",
+    "./typings/index.d.ts"
+  ]
+}

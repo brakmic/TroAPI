@@ -1,0 +1,9 @@
+export { Contact } from './declarations/Contact';
+export { HtmlElement } from './declarations/HtmlElement';
+export { HtmlLink } from './declarations/HtmlLink';
+export { Page } from './declarations/Page';
+export { IndexingReport } from './declarations/IndexingReport';
+export { SearchQuery } from './declarations/SearchQuery';
+export { FieldEntry } from './declarations/FieldEntry';
+export { SearchResult } from './declarations/SearchResult';
+export { IndexedDocument } from './declarations/IndexedDocument';
