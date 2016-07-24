@@ -48,7 +48,7 @@ must be free of any kind lock-in like format, vendor (iPhone, Android), form-fac
 This is the reason this project uses only those languages and technologies that do not impose any kind of 
 restrictions on the developer and/or future user of these services. 
 
-This projects relies heavily on these OpenSource projects, technologies & formats: 
+This projects relies heavily on following OpenSource projects, technologies & formats: 
 
  - [TypeScript](https://www.typescriptlang.org/)
  - [JSON](http://json.org/)
