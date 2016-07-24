@@ -20,7 +20,6 @@ export class ScannerService extends Subject<string> {
     private rootUrl: string = 'http://www.troisdorf.de';
     constructor() {
       super();
-      console.log('Scanner service started.');
     }
     public getPages(): Observable<Promise<Page>> {
       return this.asObservable().map(url => {
@@ -29,9 +28,6 @@ export class ScannerService extends Subject<string> {
                   .then(data => this.parse(url, data));
       });
       // return Observable.fromPromise();
-    }
-    private logger(data: any) {
-      // console.log(data);
     }
     /**
      * Parse a raw HTML page into an object of type `Page`.
@@ -60,34 +56,25 @@ export class ScannerService extends Subject<string> {
                             .join(' ');
       page.title = title.structuredText;
       page.info = generalInfo;
-      if (!_.isNil(generalInfo)) {
-        this.logger(`Info: ${generalInfo}`);
-      }
       const nolist: HtmlLink[] = this.getNoList(col3Section);
       if (!_.isEmpty(nolist)) {
-        this.logger(`No-List: ${JSON.stringify(nolist, undefined, 4)}`);
         page.noList = nolist;
       }
       const boxes: HtmlElement[] = root.querySelectorAll('.box');
       _.each(boxes, box => {
         const dlist: HtmlLink[] = this.getDocumentList(box);
         if (!_.isEmpty(dlist)) {
-          this.logger(`Documents: ${JSON.stringify(dlist, undefined, 4)}`);
           page.documents = dlist;
         }
         const attachments: HtmlLink[] = this.getAttachmentList(box);
         if (!_.isEmpty(attachments)) {
-          this.logger(`Attachments: ${JSON.stringify(attachments, undefined, 4)}`);
           page.attachments = attachments;
         }
         const llist: HtmlLink[] = this.getLinkList(box);
         if (!_.isEmpty(llist)) {
-          this.logger(`Link-List: ${JSON.stringify(llist, undefined, 4)}`);
           page.linkList = llist;
         }
-        const contacts = this.getContactList(contactSection);
-        this.logger(contacts);
-        page.contacts = contacts;
+        page.contacts = this.getContactList(contactSection);
       });
       return page;
     }
