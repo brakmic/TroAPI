@@ -30,7 +30,7 @@ these services, for example when accessing them via a mobile device. Therefore, 
 all the useful (structural & semantic) information from these web pages and serialize them into a 
 more flexible format. Like JSON, for example.
 
-##### Creating a Full-Text Search Engine with [ElasticLunr.js](https://github.com/weixsong/elasticlunr.js)
+##### Creating a Full-Text Search Engine
 
 As far as I know Troisdorf's citizen services delivers its services via HTML documents and there 
 isn't any kind of API (XML or JSON) available. Of course, it would be of much help if an ordinary citizen could
@@ -48,7 +48,15 @@ must be free of any kind lock-in like format, vendor (iPhone, Android), form-fac
 This is the reason this project uses only those languages and technologies that do not impose any kind of 
 restrictions on the developer and/or future user of these services. 
 
-This projects relies heavily on these OpenSource projects / technologies / formats: TypeScript, JavaScript, JSON, WebPack, Babel, RxJS, LoDash etc.
+This projects relies heavily on these OpenSource projects, technologies & formats: 
+
+ - [TypeScript](https://www.typescriptlang.org/)
+ - [JSON](http://json.org/)
+ - [WebPack](https://webpack.github.io/)
+ - [Babel](https://babeljs.io/)
+ - [RxJS](http://reactivex.io/)
+ - [LoDash](https://lodash.com/)
+ - [Elasticlunr.js](http://elasticlunr.com/)
 
 ##### Installation 
 
