@@ -35,7 +35,7 @@ follow some strict conventions regarding their structure and naming of attribute
 
 ##### Creating a Full-Text Search Engine
 
-As far as I know, Troisdorf's citizen services delivers its services via HTML documents and there 
+As far as I know, Troisdorf's citizen services deliver their data packed in HTML and there 
 isn't any kind of API (XML or JSON) available. Of course, it would be of much help if an ordinary citizen could
 simply type in a few terms he/she understands and let the machine do the searching & filtering business.
 Searching for information via HTML is only acceptable if you can find it within a few clicks. But 
