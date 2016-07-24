@@ -17,8 +17,9 @@ Notice: *This is not an official project of the Troisdorf Municipality.*
 The majority of the project's code is written in TypeScript for enhanced type-safety with some minor
 exceptions written in pure JavaScript. Currently, none of the available JavaScript-frameworks is in 
 use as this project strives to fulfill the above mentioned goals without using more than the 
-`standard libs` like *lodash*, *rxjs*, *babel*, *jQuery* (for UI demos only!) etc. Of course, it 
-wouldn't be a problem to use a framework like AngularJS or React but in this stage of development 
+`standard libs` like *lodash*, *rxjs*, *babel*, *jQuery* (for UI demos only!) etc. 
+
+Of course, it wouldn't be a problem to use a framework like AngularJS or React but in this stage of development 
 any additional weight should rather be avoided. 
 
 ##### Transforming HTML Pages into JSON Documents
