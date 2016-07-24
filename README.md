@@ -42,7 +42,7 @@ Searching for information via HTML is only acceptable if you can find it within 
 searching for things often written in *Legal German* without having any kind of directly 
 accessible index (a [search engine](https://github.com/brakmic/TroAPI/blob/master/src/services/search/search.service.ts)) can quickly become very tedious and time-consuming. This is the reason
 this project uses the JSON-serialized information to build up a full-text search 
-index for direct consumption. Moreover, one can [extend it on-the-fly by simply using its APIs](https://github.com/brakmic/TroAPI/blob/master/src/services/search/search.service.ts#L28).    
+index for direct consumption. Moreover, one can [extend the index on-the-fly](https://github.com/brakmic/TroAPI/blob/master/src/services/search/search.service.ts#L28).    
 
 ##### Device and Vendor Independence with APIs 
 
