@@ -24,7 +24,7 @@ any additional weight should rather be avoided.
 
 ##### Transforming HTML Pages into JSON Documents
 
-Like many other municipalities Troisdorf offers a wealth of documents, contact data, links and other 
+Like many other municipalities, Troisdorf offers a wealth of documents, contact data, links and other 
 useful resources for its inhabitants. Usually, one has to click several buttons or try several links 
 until the needed document or telephone number appears. And sometimes it's almost impossible to use 
 these services, for example when accessing them via a mobile device. Therefore, we have to extract 
