@@ -70,7 +70,7 @@ Clone this repo and then install NPM packages with `npm install`.
 *Local Mode*
 
 For local testing without accessing Troisdorf's Web Pages use the HTML pahes saved in `src/views` subdirectory. 
-Then change two variables in *main.ts*:
+Then change these two variables in *main.ts*:
  - the `siteRoot` variable should point to `views` directory
  - the `ids` array should contain names of documents from `views` directory 
 
