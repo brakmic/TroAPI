@@ -28,7 +28,9 @@ useful resources for its inhabitants. Usually, one has to click several buttons 
 until the needed document or telephone number appears. And sometimes it's almost impossible to use 
 these services, for example when accessing them via a mobile device. Therefore, we have to extract 
 all the useful (structural & semantic) information from these web pages and serialize them into a 
-more flexible format. Like JSON, for example.
+more flexible format. Like JSON, for example. This part is done by the [ScannerService](https://github.com/brakmic/TroAPI/blob/master/src/services/scanner/scanner.service.ts#L40) that takes 
+HTML documents and extracts certain areas from them. According to several tests the HTML documents
+follow some strict conventions regarding their structure and naming of attributes. 
 
 ##### Creating a Full-Text Search Engine
 
@@ -37,9 +39,9 @@ isn't any kind of API (XML or JSON) available. Of course, it would be of much he
 simply type in a few terms he/she understands and let the machine do the searching & filtering business.
 Searching for information via HTML is only acceptable if you can find it within a few clicks. But 
 searching for things often written in *Legal German* without having any kind of directly 
-accessible index (a search engine) can quickly become very tedious and time-consuming. This is the reason
+accessible index (a [search engine](https://github.com/brakmic/TroAPI/blob/master/src/services/search/search.service.ts)) can quickly become very tedious and time-consuming. This is the reason
 this project uses the JSON-serialized information to build up a full-text search 
-index for direct consumption. Moreover, one can extend it on-the-fly by simply using its APIs.    
+index for direct consumption. Moreover, one can [extend it on-the-fly by simply using its APIs](https://github.com/brakmic/TroAPI/blob/master/src/services/search/search.service.ts#L28).    
 
 ##### Device and Vendor Independence with APIs 
 
