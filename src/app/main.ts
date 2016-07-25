@@ -1,6 +1,5 @@
 import './loader';
 const domready = require('domready');
-const HTML = require('html-parse-stringify');
 const htmlParser = require('fast-html-parser');
 const troUrl = 'http://troisdorf.de/web/de/stadt_rathaus/buergerservice/dienstleistungen.htm?selection=';
 const logger = require('bows')('App');
