@@ -4,8 +4,8 @@
 
 This is a project to convert the web pages of the [Troisdorf Municipality](http://troisdorf.de/web/en/index.htm) into a:
 
- - set of JSON-based Web-APIs 
- - full-text search engine    
+ - set of [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) [Web-APIs](https://en.wikipedia.org/wiki/Web_API) 
+ - [full-text search engine](https://en.wikipedia.org/wiki/Full_text_search)    
  - device-, form-factor and vendor-independent service platform
 
 The only requirement is a modern Web Browser like *IE 11*, *Chrome*, *Firefox*, *Safari*, *Opera* etc.
