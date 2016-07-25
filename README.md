@@ -12,6 +12,10 @@ The only requirement is a modern Web Browser like *IE 11*, *Chrome*, *Firefox*, 
 
 Notice: *This is not an official project of the Troisdorf Municipality.*   
 
+#### Video demo 
+
+[![Testing the Troisdorf-API](http://img.youtube.com/vi/9d_ZmUlcxZM/0.jpg)](http://www.youtube.com/watch?v=9d_ZmUlcxZM)
+
 #### Infrastructure
 
 The majority of the project's code is written in TypeScript for enhanced type-safety with some minor
