@@ -73,7 +73,7 @@ Clone this repo and then install NPM packages with `npm install`.
 
 *Local Mode*
 
-For local testing without accessing Troisdorf's Web Pages use the HTML pahes saved in `src/views` subdirectory. 
+For local testing without accessing Troisdorf's Web Pages use the HTML pages saved in `src/views` subdirectory. 
 Then change these two variables in [main.ts](https://github.com/brakmic/TroAPI/blob/master/src/app/main.ts):
  - the [siteRoot](https://github.com/brakmic/TroAPI/blob/master/src/app/main.ts#L29) variable should point to `views` directory
  - the [ids](https://github.com/brakmic/TroAPI/blob/master/src/app/main.ts#L56) array should contain names of documents from `views` directory 
