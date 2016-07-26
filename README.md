@@ -8,7 +8,7 @@ This is a project to convert the web pages of the [Troisdorf Municipality](http:
  - [full-text search engine](https://en.wikipedia.org/wiki/Full_text_search)    
  - device-, form-factor and vendor-independent service platform
 
-The only requirement should be a modern Web Browser like *IE 11*, *Chrome*, *Firefox*, *Safari*, *Opera* etc.
+The only requirement to use the API should be a modern Web Browser like *IE 11*, *Chrome*, *Firefox*, *Safari*, *Opera* etc.
 
 Notice: *This is not an official project of the Troisdorf Municipality.*   
 
