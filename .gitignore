@@ -38,3 +38,6 @@ jspm_packages
 
 # visual studio code directory
 .vscode/
+
+#js dlls
+dll/
