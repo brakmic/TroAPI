@@ -41,3 +41,6 @@ jspm_packages
 
 #js dlls
 dll/
+
+#js dist files
+dist/
