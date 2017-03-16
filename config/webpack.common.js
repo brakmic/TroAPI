@@ -250,7 +250,11 @@ module.exports = function(options) {
 
        // Specify the correct order the scripts will be injected in
       new CommonsChunkPlugin({
+<<<<<<< HEAD
         name: ['vendor','main','polyfills']
+=======
+        name: ['vendor','advarics','polyfills']
+>>>>>>> e78f3e511e3418dd681216aea68259dbca96ab4a
       }),
 
 
