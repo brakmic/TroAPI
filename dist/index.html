@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="">
 <head>
-  <title><%= htmlWebpackPlugin.options.title %></title>
+  <title>TroAPI</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
+  <meta name="description" content="TroAPI">
   <meta name="msapplication-tap-highlight" content="no" />
 
-  <% if (webpackConfig.htmlElements.headTags) { %>
+  
   <!-- Configured Head Tags  -->
-  <%= webpackConfig.htmlElements.headTags %>
-  <% } %>
+  <link rel="manifest" href="/assets/manifest.json">
+	<meta name="msapplication-TileColor" content="#00bcd4">
+	<meta name="theme-color" content="#00bcd4">
+  
 
   <!-- base url -->
-  <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+  <base href="app">
 
-</head>
+<link rel="shortcut icon" href="favicon.ico"><script type="text/javascript" src="polyfills.7ddcf3049d26525e9628.bundle.js" defer></script><script type="text/javascript" src="vendor.9fad747a259d7a26959a.bundle.js" defer></script><script type="text/javascript" src="main.34418d30e69047a1525f.bundle.js" defer></script></head>
 
 <body>
 <div id="app" class="troisdorf-test-app">
@@ -35,10 +37,7 @@
    </div>
  </div>
 
-  <% if (htmlWebpackPlugin.options.metadata.isDevServer && htmlWebpackPlugin.options.metadata.HMR !== true) { %>
-  <!-- Webpack Dev Server reload -->
-  <script src="/webpack-dev-server.js"></script>
-  <% } %>
+  
 
 </body>
 </html>

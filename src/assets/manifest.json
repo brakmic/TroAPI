@@ -1,0 +1,13 @@
+{
+  "manifest_version": 2,
+  "name": "TroAPI",
+  "short_name": "troapi",
+  "start_url": "/index.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "version": "2",
+  "app": {
+    
+  }
+}
