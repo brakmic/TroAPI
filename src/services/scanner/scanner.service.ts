@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 
 /**
  * This Service transforms raw HTML data into objects of type `Page`.
- * 
+ *
  * @export
  * @class ScannerService
  * @extends {Subject<string>}
@@ -22,25 +22,25 @@ export class ScannerService extends Subject<string> {
       super();
     }
     public getPages(): Observable<Promise<Page>> {
-      return this.asObservable().map(url => {
+      return this.asObservable().map((url) => {
         return fetch(url)
-                  .then(response => response.text())
-                  .then(data => this.parse(url, data));
+                  .then((response) => response.text())
+                  .then((data) => this.parse(url, data));
       });
       // return Observable.fromPromise();
     }
     /**
      * Parse a raw HTML page into an object of type `Page`.
-     * 
+     *
      * @private
      * @param {string} url
      * @param {string} data
      * @returns {Page}
      */
     private parse(url: string, data: string): Page {
-      let page: Page = <Page>{
+      let page: Page = <Page> {
         id: cuid(),
-        url: url,
+        url,
         documents: [],
         contacts: [],
         attachments: [],
@@ -51,8 +51,8 @@ export class ScannerService extends Subject<string> {
       const col3SectionChildren = col3Section.childNodes;
       const contactSection = root.querySelector('#i4mindexsearchhidecontent');
       const title: HtmlElement = root.querySelector('#I4mIndexSearchTitle');
-      const generalInfo = _.filter(col3SectionChildren, c => c.tagName === 'p')
-                            .map(c => _.replace(_.trim(c.text, '\r \n'), /\s+/g, ' '))
+      const generalInfo = _.filter(col3SectionChildren, (c) => c.tagName === 'p')
+                            .map((c) => _.replace(_.trim(c.text, '\r \n'), /\s+/g, ' '))
                             .join(' ');
       page.title = title.structuredText;
       page.info = generalInfo;
@@ -61,7 +61,7 @@ export class ScannerService extends Subject<string> {
         page.noList = nolist;
       }
       const boxes: HtmlElement[] = root.querySelectorAll('.box');
-      _.each(boxes, box => {
+      _.each(boxes, (box) => {
         const dlist: HtmlLink[] = this.getDocumentList(box);
         if (!_.isEmpty(dlist)) {
           page.documents = dlist;
@@ -80,8 +80,8 @@ export class ScannerService extends Subject<string> {
     }
 
     /**
-     * Returns a list of downloadable documents (server root can be cofigured separately) 
-     * 
+     * Returns a list of downloadable documents (server root can be cofigured separately)
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {HtmlLink[]}
@@ -91,10 +91,10 @@ export class ScannerService extends Subject<string> {
       const dlist = el.querySelector('.dlist');
       if (!_.isEmpty(dlist)) {
           const listItems: HtmlElement[] = this.getItemList(dlist.childNodes);
-            const downList = _.flatMap(listItems, item => {
+          const downList = _.flatMap(listItems, (item) => {
               return this.getAnchorList(item.childNodes);
             });
-            list = _.flatMap(downList, down => {
+          list = _.flatMap(downList, (down) => {
               return this.getHrefList([down], 'http://www.troisdorf.de');
             });
           }
@@ -102,7 +102,7 @@ export class ScannerService extends Subject<string> {
     }
     /**
      * Returns a list of attachments (external sources)
-     * 
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {HtmlLink[]}
@@ -125,7 +125,7 @@ export class ScannerService extends Subject<string> {
     }
     /**
      * Returns a list of contacts (address information, phone, email etc.)
-     * 
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {Contact[]}
@@ -138,14 +138,14 @@ export class ScannerService extends Subject<string> {
         contacts = _.map(_trs, (tr: HtmlElement) => {
           const data = this.extractContactData(tr.childNodes);
           const _data = _.split(tr.structuredText, '\n')
-                         .filter(a => !this.unwantedEntries.includes(a));
+                         .filter((a) => !this.unwantedEntries.includes(a));
           const names = _.split(_.toString(data[0]), ',');
           const email = _.toString(data[1]);
-          return <Contact>{
+          return <Contact> {
             fullName: `${_.trim(names[1])} ${_.trim(names[0])}`,
             firstName: _.trim(names[1]),
             lastName: _.trim(names[0]),
-            email: email,
+            email,
             phone: _.trim(_.replace(_.toString(data[2]), 'Tel.', '')),
             fax: _.trim(_.replace(_.toString(data[3]), 'Fax', '')),
             address: _data[3],
@@ -157,7 +157,7 @@ export class ScannerService extends Subject<string> {
     }
     /**
      * Returns a `no-list` based on the original HTML-structure with class `nolist`
-     * 
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {HtmlLink[]}
@@ -167,7 +167,7 @@ export class ScannerService extends Subject<string> {
       const nolist = el.querySelector('.nolist');
       if (!_.isEmpty(nolist)) {
           const items = this.getItemList(nolist.childNodes);
-          result = _.flatMap(items, item => {
+          result = _.flatMap(items, (item) => {
             const anchors = this.getAnchorList(item.childNodes);
             return this.getHrefList(anchors);
           });
@@ -175,8 +175,8 @@ export class ScannerService extends Subject<string> {
       return result;
     }
     /**
-     * Returns a list of external links 
-     * 
+     * Returns a list of external links
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {HtmlLink[]}
@@ -185,7 +185,7 @@ export class ScannerService extends Subject<string> {
       let result: HtmlLink[] = [];
       const llist = el.querySelectorAll('.ext');
       if (!_.isEmpty(llist)) {
-            result = _.flatMap(llist, item => {
+            result = _.flatMap(llist, (item) => {
               const downloads: HtmlElement[] = this.getAnchorList(item.childNodes);
               return this.getHrefList(downloads);
             });
@@ -193,8 +193,8 @@ export class ScannerService extends Subject<string> {
       return result;
     }
     /**
-     * Returns an array containing HTML <LI> entries 
-     * 
+     * Returns an array containing HTML <LI> entries
+     *
      * @private
      * @param {HtmlElement[]} nodes
      * @returns {HtmlElement[]}
@@ -203,8 +203,8 @@ export class ScannerService extends Subject<string> {
       return _.filter(nodes, (node: any) => node.tagName === 'li');
     }
     /**
-     * Returns an array of HTML <A> entries 
-     * 
+     * Returns an array of HTML <A> entries
+     *
      * @private
      * @param {HtmlElement[]} elements
      * @returns {HtmlElement[]}
@@ -213,8 +213,8 @@ export class ScannerService extends Subject<string> {
       return _.filter(elements, (node: any) => node.tagName === 'a');
     }
     /**
-     * Returns a list or HTML <TR> entries internally extracted from a <TBODY> 
-     * 
+     * Returns a list or HTML <TR> entries internally extracted from a <TBODY>
+     *
      * @private
      * @param {HtmlElement[]} elements
      * @returns {HtmlElement[]}
@@ -229,7 +229,7 @@ export class ScannerService extends Subject<string> {
     }
     /**
      * Returns a list of HTML <TD> entries
-     * 
+     *
      * @private
      * @param {HtmlElement[]} elements
      * @returns {HtmlElement[]}
@@ -242,8 +242,8 @@ export class ScannerService extends Subject<string> {
       return data;
     }
     /**
-     * Extracts raw data for future composing of contact entries 
-     * 
+     * Extracts raw data for future composing of contact entries
+     *
      * @private
      * @param {HtmlElement[]} elements
      * @returns {HtmlElement[]}
@@ -263,14 +263,14 @@ export class ScannerService extends Subject<string> {
               n.tagName === 'h5') {
               return n.text;
             }
-            return '';
+          return '';
         });
       });
-      return _.filter(data, d => !_.isEmpty(d));
+      return _.filter(data, (d) => !_.isEmpty(d));
     }
     /**
-     * Extracts the raw email entry from an HTML <INPUT> field 
-     * 
+     * Extracts the raw email entry from an HTML <INPUT> field
+     *
      * @private
      * @param {HtmlElement} el
      * @returns {string}
@@ -285,14 +285,14 @@ export class ScannerService extends Subject<string> {
     }
     /**
      * Returns a list of HTML <HREF> attributes
-     * 
+     *
      * @private
      * @param {HtmlElement[]} entries
      * @param {string} [rootUrl='']
      * @returns {HtmlLink[]}
      */
     private getHrefList(entries: HtmlElement[], rootUrl: string = ''): HtmlLink[] {
-      const links = _.map(entries, dload => {
+      const links = _.map(entries, (dload) => {
                 const docTitle = _.trim(dload.structuredText);
                 const docPath = dload.attributes.href;
                 return <HtmlLink> {
@@ -303,6 +303,3 @@ export class ScannerService extends Subject<string> {
       return links;
     }
 }
-
-
-

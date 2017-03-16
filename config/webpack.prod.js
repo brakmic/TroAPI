@@ -1,42 +1,40 @@
-var helpers = require('./helpers');
-var webpackMerge = require('webpack-merge'); // merge webpack configs
-var commonConfig = require('./webpack.common.js'); // common settings for prod & dev
+const helpers = require('./helpers');
+const webpackMerge = require('webpack-merge'); // merge webpack configs
+const commonConfig = require('./webpack.common.js'); // common settings for prod & dev
+const path = require('path');
 
 /**
  * Webpack Plugins
  */
-var ProvidePlugin = require('webpack/lib/ProvidePlugin');
-var DefinePlugin = require('webpack/lib/DefinePlugin');
-var NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
-var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
-var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
-var CompressionPlugin = require('compression-webpack-plugin');
-var WebpackMd5Hash = require('webpack-md5-hash');
+const DefinePlugin = require('webpack/lib/DefinePlugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const IgnorePlugin = require('webpack/lib/IgnorePlugin');
+const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
+const NormalModuleReplacementPlugin = require('webpack/lib/NormalModuleReplacementPlugin');
+const ProvidePlugin = require('webpack/lib/ProvidePlugin');
+const UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
+const WebpackMd5Hash = require('webpack-md5-hash');
+const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
+const WatchIgnorePlugin = require('webpack/lib/WatchIgnorePlugin');
+// const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 
 /**
- * Webpack varants
+ * Webpack Constants
  */
-var ENV = process.env.NODE_ENV = process.env.ENV = 'production';
-var HOST = process.env.HOST || 'localhost';
-var PORT = process.env.PORT || 8080;
-var METADATA = webpackMerge(commonConfig.metadata, {
+const ENV = process.env.NODE_ENV = process.env.ENV = 'production';
+const HOST = process.env.HOST || 'localhost';
+const PORT = process.env.PORT || 3001;
+const TITLE = process.env.TITLE || 'Retail.Web';
+const METADATA = webpackMerge(commonConfig({ env: ENV }), {
   host: HOST,
   port: PORT,
   ENV: ENV,
-  HMR: false,
-  urlPrefix: '/'
+  HMR: false
 });
 
-module.exports = webpackMerge(commonConfig, {
+module.exports = function(env) {
 
-
-  metadata: METADATA,
-  /**
-   * Switch loaders to debug mode.
-   *
-   * See: http://webpack.github.io/docs/configuration.html#debug
-   */
-  debug: false,
+return webpackMerge(commonConfig({ env: ENV }), {
 
   /**
    * Developer tool to enhance debugging
@@ -60,7 +58,7 @@ module.exports = webpackMerge(commonConfig, {
      */
     path: helpers.root('dist'),
 
-    publicPath: 'experiments/',
+    // publicPath: 'retailweb/',
 
     /**
      * Specifies the name of each output file on disk.
@@ -88,13 +86,41 @@ module.exports = webpackMerge(commonConfig, {
 
   },
 
+  module: {
+    rules: [
+      /*
+         * Extract CSS files from .src/styles directory to external CSS file
+         */
+        // {
+        //   test: /\.css$/,
+        //   loader: ExtractTextPlugin.extract({
+        //     fallback: 'style-loader',
+        //     use: 'css-loader'
+        //   }),
+        //   include: [helpers.root('src', 'themes/default')]
+        // },
+
+        /*
+         * Extract and compile SCSS files from .src/styles directory to external CSS file
+         */
+        // {
+        //   test: /\.scss$/,
+        //   loader: ExtractTextPlugin.extract({
+        //     fallback: 'style-loader',
+        //     use: 'css-loader!sass-loader'
+        //   }),
+        //   include: [helpers.root('src', 'themes/default')]
+        // },
+
+    ]
+  },
+
   /**
    * Add additional plugins to the compiler.
    *
    * See: http://webpack.github.io/docs/configuration.html#plugins
    */
   plugins: [
-
     /**
      * Plugin: WebpackMd5Hash
      * Description: Plugin to replace a standard webpack chunkhash with md5.
@@ -102,16 +128,6 @@ module.exports = webpackMerge(commonConfig, {
      * See: https://www.npmjs.com/package/webpack-md5-hash
      */
     new WebpackMd5Hash(),
-
-    /**
-     * Plugin: DedupePlugin
-     * Description: Prevents the inclusion of duplicate code into your bundle
-     * and instead applies a copy of the function at runtime.
-     *
-     * See: https://webpack.github.io/docs/list-of-plugins.html#defineplugin
-     * See: https://github.com/webpack/docs/wiki/optimization#deduplication
-     */
-    new DedupePlugin(),
 
     /**
      * Plugin: DefinePlugin
@@ -133,6 +149,7 @@ module.exports = webpackMerge(commonConfig, {
       }
     }),
 
+
     /**
      * Plugin: UglifyJsPlugin
      * Description: Minimize all JavaScript output of chunks.
@@ -142,31 +159,28 @@ module.exports = webpackMerge(commonConfig, {
      */
     // NOTE: To debug prod builds uncomment //debug lines and comment //prod lines
     new UglifyJsPlugin({
-      // beautify: true, //debug
-      // mangle: false, //debug
-      // dead_code: false, //debug
-      // unused: false, //debug
-      // deadCode: false, //debug
-      // compress: {
-      //   screw_ie8: true,
-      //   keep_fnames: true,
-      //   drop_debugger: false,
-      //   dead_code: false,
-      //   unused: false
-      // }, // debug
-      // comments: true, //debug
+          beautify: false, //prod
+        output: {
+          comments: false
+        },
+        mangle: {
+          screw_ie8: true
+        }, //prod
+        compress: {
+          screw_ie8: true,
+          warnings: false,
+          conditionals: true,
+          unused: true,
+          comparisons: true,
+          sequences: true,
+          dead_code: true,
+          evaluate: true,
+          if_return: true,
+          join_vars: true,
+          negate_iife: false // we need this for lazy v8
+        },
+        comments: false //prod
 
-      beautify: false, //prod
-
-      mangle: {
-        screw_ie8 : true
-      }, //prod
-
-      compress: {
-        screw_ie8: true
-      }, //prod
-
-      comments: false //prod
     }),
 
       /**
@@ -176,54 +190,102 @@ module.exports = webpackMerge(commonConfig, {
      * See: http://webpack.github.io/docs/list-of-plugins.html#normalmodulereplacementplugin
      */
 
-   /* new NormalModuleReplacementPlugin(
-      /angular2-hmr/,
-      helpers.root('node_modules/angular2-hmr/prod.js')
-    ),*/
+    //  new NormalModuleReplacementPlugin(
+    //   /angular2-hmr/,
+    //    helpers.root('config/modules/angular2-hmr-prod.js')
+    //  ),
 
-    /**
-     * Plugin: CompressionPlugin
-     * Description: Prepares compressed versions of assets to serve
-     * them with Content-Encoding
-     *
-     * See: https://github.com/webpack/compression-webpack-plugin
-     */
-    new CompressionPlugin({
-      regExp: /\.css$|\.html$|\.js$|\.map$/,
-      threshold: 2 * 1024
-    })
+     new NormalModuleReplacementPlugin(
+        /angular2-hmr/,
+        helpers.root('config/empty.js')
+     ),
+
+     new NormalModuleReplacementPlugin(
+        /zone\.js(\\|\/)dist(\\|\/)long-stack-trace-zone/,
+        helpers.root('config/empty.js')
+     ),
+
+     // AoT
+      // new NormalModuleReplacementPlugin(
+      //   /@angular(\\|\/)upgrade/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /@angular(\\|\/)compiler/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /@angular(\\|\/)platform-browser-dynamic/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /dom(\\|\/)debug(\\|\/)ng_probe/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /dom(\\|\/)debug(\\|\/)by/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /src(\\|\/)debug(\\|\/)debug_node/,
+      //   helpers.root('config/empty.js')
+      // ),
+      // new NormalModuleReplacementPlugin(
+      //   /src(\\|\/)debug(\\|\/)debug_renderer/,
+      //   helpers.root('config/empty.js')
+      // ),
+
+     /**
+      * Plugin LoaderOptionsPlugin (experimental)
+      *
+      * See: https://gist.github.com/sokra/27b24881210b56bbaff7
+      */
+      new LoaderOptionsPlugin({
+        minimize: true,
+        debug: false,
+        options: {
+          context: helpers.root('src'),
+          output: {
+            path: helpers.root('dist')
+          },
+          /**
+           * Static analysis linter for TypeScript advanced options configuration
+           * Description: An extensible linter for the TypeScript language.
+           *
+           * See: https://github.com/wbuchwalter/tslint-loader
+           */
+          tslint: {
+            emitErrors: true,
+            failOnHint: true,
+            resourcePath: helpers.root('src')
+          },
+          /**
+           * Html loader advanced options
+           *
+           * See: https://github.com/webpack/html-loader#advanced-options
+           */
+          // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
+          htmlLoader: {
+            minimize: true,
+            removeAttributeQuotes: false,
+            caseSensitive: true,
+            customAttrSurround: [
+              [/#/, /(?:)/],
+              [/\*/, /(?:)/],
+              [/\[?\(?/, /(?:)/]
+            ],
+            customAttrAssign: [/\)?\]?=/]
+          },
+        }
+      }),
+
+
+     new WatchIgnorePlugin([
+       helpers.root('src/app/sw'),
+       helpers.root('src/app/workers')
+    ]),
 
   ],
-
-  /**
-   * Static analysis linter for TypeScript advanced options configuration
-   * Description: An extensible linter for the TypeScript language.
-   *
-   * See: https://github.com/wbuchwalter/tslint-loader
-   */
-  tslint: {
-    emitErrors: true,
-    failOnHint: true,
-    resourcePath: 'src'
-  },
-
-  /**
-   * Html loader advanced options
-   *
-   * See: https://github.com/webpack/html-loader#advanced-options
-   */
-  // TODO: Need to workaround Angular 2's html syntax => #id [bind] (event) *ngFor
-  htmlLoader: {
-    minimize: true,
-    removeAttributeQuotes: false,
-    caseSensitive: true,
-    customAttrSurround: [
-      [/#/, /(?:)/],
-      [/\*/, /(?:)/],
-      [/\[?\(?/, /(?:)/]
-    ],
-    customAttrAssign: [/\)?\]?=/]
-  },
 
   /*
    * Include polyfills or mocks for various node stuff
@@ -232,7 +294,7 @@ module.exports = webpackMerge(commonConfig, {
    * See: https://webpack.github.io/docs/configuration.html#node
    */
   node: {
-    global: 'window',
+    global: true,
     crypto: 'empty',
     process: false,
     module: false,
@@ -241,3 +303,5 @@ module.exports = webpackMerge(commonConfig, {
   }
 
 });
+
+};
