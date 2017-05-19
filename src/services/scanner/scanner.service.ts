@@ -38,14 +38,14 @@ export class ScannerService extends Subject<string> {
      * @returns {Page}
      */
     private parse(url: string, data: string): Page {
-      let page: Page = <Page> {
+      const page: Page = {
         id: cuid(),
         url,
         documents: [],
         contacts: [],
         attachments: [],
         noList: []
-      };
+      } as Page;
       const root = htmlParser.parse(data);
       const col3Section: HtmlElement = root.querySelector('#col3_content');
       const col3SectionChildren = col3Section.childNodes;
@@ -141,7 +141,7 @@ export class ScannerService extends Subject<string> {
                          .filter((a) => !this.unwantedEntries.includes(a));
           const names = _.split(_.toString(data[0]), ',');
           const email = _.toString(data[1]);
-          return <Contact> {
+          return {
             fullName: `${_.trim(names[1])} ${_.trim(names[0])}`,
             firstName: _.trim(names[1]),
             lastName: _.trim(names[0]),
@@ -150,7 +150,7 @@ export class ScannerService extends Subject<string> {
             fax: _.trim(_.replace(_.toString(data[3]), 'Fax', '')),
             address: _data[3],
             room: _data[4]
-          };
+          } as Contact;
         });
       }
       return contacts;
@@ -295,10 +295,10 @@ export class ScannerService extends Subject<string> {
       const links = _.map(entries, (dload) => {
                 const docTitle = _.trim(dload.structuredText);
                 const docPath = dload.attributes.href;
-                return <HtmlLink> {
+                return {
                   title: docTitle,
                   url: `${rootUrl}${docPath}`
-                };
+                } as HtmlLink;
               });
       return links;
     }

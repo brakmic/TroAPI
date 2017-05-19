@@ -33,12 +33,12 @@ export class SearchService {
             url: page.url
         });
         return Promise.resolve(
-            <IndexingReport> {
+            {
                 id: cuid(),
                 docId: page.id,
                 succeeded: true,
                 timeStamp: new Date().toString()
-            });
+            } as IndexingReport);
     }
     /**
      * Returns an indexed object with given Id.
@@ -52,10 +52,10 @@ export class SearchService {
     public search(query: string): Promise<SearchResult[]> {
         const results: any[] = this.index.search(query);
         const mapped = _.map(results, (result) => {
-            return <SearchResult> {
+            return {
                 ref: result.ref,
                 score: result.score
-            };
+            } as SearchResult;
         });
         return Promise.resolve(mapped);
     }

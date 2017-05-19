@@ -10,7 +10,7 @@ const scanner = new ScannerService();
 // Currently, we do not use any of the available JS-frameworks.
 const app = new App(scanner, search);
 
-(<WindowEx> window).TroApi = {
+(window as WindowEx).TroApi = {
     app,
     scanner,
     search
