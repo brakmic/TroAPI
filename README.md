@@ -1,6 +1,6 @@
 ### [Troisdorf](https://en.wikipedia.org/wiki/Troisdorf) [API](https://en.wikipedia.org/wiki/Application_programming_interface)
 
-![Troisdorf Logo](https://s32.postimg.org/rijxkp6gj/tro_logo.png)
+![Troisdorf Logo](https://raw.githubusercontent.com/brakmic/bazaar/master/images/random/troapi.png)
 
 This is a project to convert the web pages of the [Troisdorf Municipality](http://troisdorf.de/web/en/index.htm) into a:
 
