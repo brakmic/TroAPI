@@ -96,7 +96,7 @@ To run in *remote mode* two separate NodeJS processes are needed:
 
  To start Hapi type `npm run api`. 
 
- ![HapiServer](https://s31.postimg.org/56zgd629l/tro_api_server.png)
+ ![HapiServer](https://raw.githubusercontent.com/brakmic/bazaar/master/images/random/hapi-logo.png)
 
  To start the client app type `npm run start:hmr` or `npm run server:prod`.
 
