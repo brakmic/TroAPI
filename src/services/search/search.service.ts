@@ -7,6 +7,13 @@ const htmlParser = require('fast-html-parser');
 const cuid = require('cuid');
 import * as _ from 'lodash';
 const elasticlunr = require('elasticlunr');
+const config = {
+                    fields: {
+                        title: {boost: 1},
+                        body: { boost: 2}
+                    },
+                    boolean: 'OR'
+                };
 
 /**
  * Provides indexing and search services.
@@ -29,9 +36,10 @@ export class SearchService {
         this.index.addDoc({
             id: page.id,
             title: page.title,
-            info: page.info,
+            body: page.info,
             url: page.url
         });
+        console.log(`INDEXED : ${page.title} | ${page.info}`);
         return Promise.resolve(
             {
                 id: cuid(),
@@ -50,7 +58,7 @@ export class SearchService {
         return Promise.resolve(this.index.documentStore.getDoc(id) as IndexedDocument);
     }
     public search(query: string): Promise<SearchResult[]> {
-        const results: any[] = this.index.search(query);
+        const results: any[] = this.index.search(query, config);
         const mapped = _.map(results, (result) => {
             return {
                 ref: result.ref,
@@ -66,8 +74,9 @@ export class SearchService {
      */
     private init() {
       this.index = elasticlunr(function() {
+          this.setRef('id');
           this.addField('title');
-          this.addField('info');
+          this.addField('body');
           this.addField('url');
       });
     }
