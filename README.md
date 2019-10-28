@@ -108,15 +108,9 @@ To run in *remote mode* two separate NodeJS processes are needed:
  - A collection of currently parsed HTML documents shown in *collapsible item groups*.
  - A *search tool* for querying the index.
 
- ![Demo App](http://imageup.info/upload/big/2016/07/24/57951a46029f1.png)
+* An item can contain different categories (documents, attachments, contacts, links etc.).
 
- An item can contain different categories (documents, attachments, contacts, links etc.).
-
- ![Items](https://s31.postimg.org/7rmnhqdjt/troapi_2.png)
-
- The search tool utilizes the full-text indexing engine to deliver links to Troisdorf Municipality web pages.
-
- ![Search Tool](https://s31.postimg.org/jjswbo9gp/troapi_3.png)
+* The search tool utilizes the full-text indexing engine to deliver links to Troisdorf Municipality web pages.
 
  #### License 
 
