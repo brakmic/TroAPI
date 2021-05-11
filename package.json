@@ -59,7 +59,7 @@
     "font-awesome": "^4.7.0",
     "fsevents": "^2.0.7",
     "hammerjs": "^2.0.8",
-    "html-parse-stringify": "^1.0.2",
+    "html-parse-stringify": "^2.0.1",
     "jquery": "^3.4.1",
     "normalize.css": "^7.0.0",
     "redux": "^3.7.0",
