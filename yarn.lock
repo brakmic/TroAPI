@@ -3599,11 +3599,11 @@ html-minifier@^3.2.3:
     relateurl "0.2.x"
     uglify-js "2.8.x"
 
-html-parse-stringify@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-1.0.2.tgz#1208e98cd7430ad7efb12e1e7acee9214fd22283"
+html-parse-stringify@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/html-parse-stringify/-/html-parse-stringify-2.0.1.tgz#fe9e670d4d5ec104b1ec13a9dc4bb8e4bbec811f"
   dependencies:
-    void-elements "^1.0.0"
+    void-elements "3.1.0"
 
 html-webpack-plugin@^2.28.0:
   version "2.28.0"
@@ -7560,9 +7560,9 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-void-elements@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-1.0.0.tgz#6e5db1e35d591f5ac690ce1a340f793a817b2c2a"
+void-elements@3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/void-elements/-/void-elements-3.1.0.tgz#614f7fbf8d801f0bb5f0661f5b2f5785750e4f09"
 
 watchpack@^1.3.1:
   version "1.6.0"
