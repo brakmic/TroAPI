@@ -54,7 +54,10 @@ export class App {
     const ids: string[] = ['035', '036',
       '067', '096',
       '045', '049',
-      '042', '041'];
+      '042', '041',
+      '079', '164',
+      '077', '010',
+      '039'];
     // Alternative array of IDs when loading html docs locally.
     // Also don't forget to change `siteRoot` to the local 'views/' directory
     // The Hapi server isn't needed when dealing with local view*.html files.
