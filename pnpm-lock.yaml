@@ -20,7 +20,7 @@ specifiers:
   babel-preset-es2015: ^6.24.1
   babel-preset-stage-0: ^6.24.1
   base64-js: ^1.5.1
-  bootstrap: ^3.3.7
+  bootstrap: ^3.4.1
   bootstrap-loader: ^2.2.0
   bootstrap-sass: ^3.4.1
   bows: ^1.7.2
@@ -32,10 +32,10 @@ specifiers:
   css-loader: ^0.28.11
   cuid: ^1.3.8
   domready: ^1.0.8
-  elasticlunr: git+https://github.com/weixsong/elasticlunr.js.git
+  elasticlunr: github:weixsong/elasticlunr.js
   es6-promise: ^4.2.8
   exports-loader: ^0.6.4
-  expose-loader: ^0.7.3
+  expose-loader: ^0.7.5
   extract-text-webpack-plugin: ^2.1.2
   fast-html-parser: ^1.0.1
   file-loader: ^0.11.2
@@ -45,13 +45,13 @@ specifiers:
   fsevents: ^2.3.2
   hammerjs: ^2.0.8
   hapi: ^16.7.0
-  html-parse-stringify: ^2.0.1
+  html-parse-stringify: ^2.1.1
   html-webpack-plugin: ^2.30.1
   http-server: ^0.10.0
   imports-loader: ^0.7.1
   inert: ^4.2.1
   isomorphic-fetch: ^2.2.1
-  jquery: ^3.4.1
+  jquery: ^3.6.0
   js-base64: ^2.6.4
   json-loader: ^0.5.7
   lodash: ^4.17.21
@@ -60,7 +60,7 @@ specifiers:
   normalize.css: ^7.0.0
   raw-loader: 0.5.1
   redux: ^3.7.2
-  reflect-metadata: ^0.1.10
+  reflect-metadata: ^0.1.13
   resolve-url-loader: ^2.3.2
   rimraf: ^2.7.1
   rxjs: ^5.5.12
@@ -82,7 +82,7 @@ specifiers:
   v8-lazy-parse-webpack-plugin: ^0.3.0
   webpack: ^2.7.0
   webpack-dashboard: ^0.4.0
-  webpack-dev-server: ^3.1.11
+  webpack-dev-server: ^3.11.2
   webpack-dll-bundles-plugin: ^1.0.0-beta.5
   webpack-md5-hash: ^0.0.5
   webpack-merge: ^4.2.2
@@ -242,7 +242,7 @@ packages:
   /@types/glob/7.1.3:
     resolution: {integrity: sha512-SEYeGAIQIQX8NN6LDKprLjbrd5dARM5EXsd8GI/A5l0apYI1fGMWgPHSe4ZKL4eozlAyI+doUE9XbYS4xCkQ1w==}
     dependencies:
-      '@types/minimatch': 2.0.29
+      '@types/minimatch': 3.0.4
       '@types/node': 7.10.14
     dev: true
 
@@ -279,6 +279,10 @@ packages:
 
   /@types/minimatch/2.0.29:
     resolution: {integrity: sha1-UALhT3Xi1x5WQoHfBDHIwbSio2o=}
+    dev: true
+
+  /@types/minimatch/3.0.4:
+    resolution: {integrity: sha512-1z8k4wzFnNjVK/tlxvrWuK5WMt6mydWWP7+zvH5eFep4oj+UkrfiJTRtjCeBXNpwaA/FYqqtb4/QS4ianFpIRA==}
     dev: true
 
   /@types/node/7.10.14:
